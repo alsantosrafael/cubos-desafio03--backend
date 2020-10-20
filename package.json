@@ -10,7 +10,10 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"bcrypt": "^5.0.0",
+		"bcryptjs": "^2.4.3",
 		"dotenv": "^8.2.0",
+		"jsonwebtoken": "^8.5.1",
 		"koa": "^2.13.0",
 		"koa-bodyparser": "^4.3.0",
 		"koa-router": "^9.4.0",

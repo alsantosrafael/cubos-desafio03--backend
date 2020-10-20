@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const rodadasRepo = require('../repositories/rodadas');
 
 const tableSorter = require('../utils/tableSorter');
@@ -28,10 +29,42 @@ const obterTabelaOrdenada = async (ctx) => {
 
 	return response(ctx, timesOrdenados, 200);
 };
-
-const atualizarJogo = async (ctx) => {
-	const { id = null } = ctx.params;
-	const { golsCasa, golsVisitante } = ctx.request.body;
+const obterRodadas = async (ctx) => {
+	const todosOsJogos = await rodadasRepo.obterRodadas();
+	return response(ctx, todosOsJogos, 200);
 };
 
-module.exports = { obterRodada, obterTabelaOrdenada };
+const atualizarJogo = async (ctx) => {
+	const { id = null, gols_casa, gols_visitante } = ctx.request.body;
+
+	if (!gols_casa && !gols_visitante) {
+		return response(
+			ctx,
+			'Pedido mal-formatado',
+			400,
+			'Insira pelo menos um novo placar'
+		);
+	}
+	if (id) {
+		const jogoAtual = await rodadasRepo.obterJogoPorId(id);
+		if (jogoAtual) {
+			const jogoAtualizado = {
+				...jogoAtual,
+				gols_casa: gols_casa || jogoAtual.gols_casa,
+				gols_visitante: gols_visitante || jogoAtual.gols_visitante,
+			};
+
+			const result = await rodadasRepo.atualizarJogo(id, jogoAtualizado);
+			return response(ctx, result, 200);
+		}
+		return response(ctx, 'Jogo não encontrado', 404, 'Não deve existir');
+	}
+	return response(ctx, 'Pedido mal-formatado', 400, 'Insira um ID');
+};
+
+module.exports = {
+	obterRodada,
+	obterTabelaOrdenada,
+	atualizarJogo,
+	obterRodadas,
+};

@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
 const db = require('../utils/database');
 
 const obterRodada = async (rodada) => {
 	const query = {
-		text: `SELECT * FROM jogos WHERE rodada = $1`,
+		text: `SELECT * FROM jogos WHERE rodada = $1 ORDER BY id`,
 		values: [rodada],
 	};
 	const result = await db.query(query);
@@ -11,31 +12,37 @@ const obterRodada = async (rodada) => {
 
 const obterRodadas = async () => {
 	const query = {
-		text: `SELECT * FROM jogos`,
+		text: `SELECT * FROM jogos ORDER BY id`,
 	};
 	const result = await db.query(query);
 	return result.rows;
 };
 
-const obterJogos = async () => {
+const obterJogoPorId = async (idJogo) => {
 	const query = {
-		text: `SELECT * FROM jogos`,
-	};
-	const result = await db.query(query);
-	return result.rows;
-};
-
-const atualizarJogoRodada = async (id, jogoAtualizado) => {
-	const { golsCasa, golsVisitante } = jogoAtualizado;
-	const query = {
-		text: `UPDATE jogos
-		SET golsCasa = $1
-		golsVisitante = $2
-		WHERE id = $3 RETURNING *`,
-		values: [golsCasa, golsVisitante, id],
+		text: `SELECT * FROM jogos WHERE id = $1`,
+		values: [idJogo],
 	};
 	const result = await db.query(query);
 	return result.rows.shift();
 };
 
-module.exports = { obterRodada, obterRodadas, atualizarJogoRodada };
+const atualizarJogo = async (id, jogoAtualizado) => {
+	const { gols_casa, gols_visitante } = jogoAtualizado;
+	const query = {
+		text: `UPDATE jogos
+		SET gols_casa = $1,
+		gols_visitante = $2
+		WHERE id = $3 RETURNING *`,
+		values: [gols_casa, gols_visitante, id],
+	};
+	const result = await db.query(query);
+	return result.rows.shift();
+};
+
+module.exports = {
+	obterRodada,
+	obterRodadas,
+	atualizarJogo,
+	obterJogoPorId,
+};
