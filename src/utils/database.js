@@ -1,6 +1,9 @@
 const { Client } = require('pg');
 require('dotenv').config();
-
+/**
+ * Configuração do banco de dados. O cliente é responsável por
+ * estabelecer conexão com o servidor do Heroku
+ */
 const client = new Client({
 	host: process.env.DB_HOST,
 	user: process.env.DB_USER,

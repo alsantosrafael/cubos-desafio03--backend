@@ -1,4 +1,13 @@
+/**
+ * Grupo de funções responsáveis por tratar as informações
+ * das tabelas de todos os jogos e criar uma nova tabela
+ * com a organizacao dos times segundo os critérios
+ */
 const tabelaFormatada = [];
+/**
+ * Função responsável por criar um array de objetos
+ * contendo os times, suas vitorias, pontos, etc...
+ */
 const formataTabela = (nome, golsFeitos, golsSofridos, pontos) => {
 	const flag = tabelaFormatada.findIndex((x) => x.nome === nome);
 
@@ -22,7 +31,10 @@ const formataTabela = (nome, golsFeitos, golsSofridos, pontos) => {
 	tabelaFormatada[flag].golsFeitos += golsFeitos;
 	tabelaFormatada[flag].golsSofridos += golsSofridos;
 };
-
+/**
+ * Função responsável por colocar os times em ordem segundo os
+ * parâmetros e critérios passados
+ */
 const ordenaTabela = (times) => {
 	const timesOrdenados = times.sort((timeA, timeB) => {
 		if (timeB.pontos > timeA.pontos) return 1;
@@ -37,7 +49,11 @@ const ordenaTabela = (times) => {
 	});
 	return timesOrdenados;
 };
-
+/**
+ * Função responsável por varrer a tabela de todos os jogos,
+ * e tomar a decisao de criar objetos no array de tabelaFormatada
+ * conforme os critérios passados
+ */
 const populaTabela = (jogos) => {
 	jogos.forEach((jogo) => {
 		if (jogo.gols_casa > jogo.gols_visitante) {

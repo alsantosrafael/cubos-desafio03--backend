@@ -2,7 +2,9 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 const DB = require('./database');
-
+/**
+ * Criando as migrations e o registro de todas as tabelas em nosso banco de dados
+ */
 const schema = {
 	1: `CREATE TABLE IF NOT EXISTS jogos
 	(
