@@ -3,11 +3,12 @@
  * das tabelas de todos os jogos e criar uma nova tabela
  * com a organizacao dos times segundo os critérios
  */
-const tabelaFormatada = [];
+let tabelaFormatada = [];
 /**
  * Função responsável por criar um array de objetos
  * contendo os times, suas vitorias, pontos, etc...
  */
+
 const formataTabela = (nome, golsFeitos, golsSofridos, pontos) => {
 	const flag = tabelaFormatada.findIndex((x) => x.nome === nome);
 
@@ -36,7 +37,8 @@ const formataTabela = (nome, golsFeitos, golsSofridos, pontos) => {
  * parâmetros e critérios passados
  */
 const ordenaTabela = (times) => {
-	const timesOrdenados = times.sort((timeA, timeB) => {
+	let timesOrdenados = [];
+	timesOrdenados = times.sort((timeA, timeB) => {
 		if (timeB.pontos > timeA.pontos) return 1;
 		if (timeA.pontos > timeB.pontos) return -1;
 		if (timeB.vitorias > timeA.vitorias) return 1;
@@ -55,6 +57,7 @@ const ordenaTabela = (times) => {
  * conforme os critérios passados
  */
 const populaTabela = (jogos) => {
+	tabelaFormatada = [];
 	jogos.forEach((jogo) => {
 		if (jogo.gols_casa > jogo.gols_visitante) {
 			formataTabela(

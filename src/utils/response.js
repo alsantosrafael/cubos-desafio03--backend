@@ -6,10 +6,8 @@ const response = (ctx, dados, codeStatus = 200, mensagem = 'sucesso') => {
 	ctx.status = codeStatus;
 	ctx.body = {
 		status,
-		dados: {
-			dados,
-			mensagem,
-		},
+		dados,
+		mensagem,
 	};
 };
 
