@@ -6,10 +6,11 @@ require('dotenv').config();
 const server = new Koa();
 const router = require('./src/routes');
 
+const PORT = process.env.PORT || 8081;
 server.use(bodyparser());
 
 server.use(router.routes());
 
-server.listen(8081, () => {
-	console.log(`Servidor rodando na porta 8081!`);
+server.listen(PORT, () => {
+	console.log(`Servidor rodando na porta ${PORT}!`);
 });

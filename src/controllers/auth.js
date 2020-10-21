@@ -23,7 +23,7 @@ const autenticar = async (ctx) => {
 
 	const usuario = await User.obterUsuarioPorEmail(email);
 	if (usuario) {
-		const compara = await Password.checar(password, usuario.senha);
+		const compara = await Password.checarSenha(password, usuario.senha);
 		if (compara) {
 			const token = await jwt.sign(
 				{ email: usuario.email },

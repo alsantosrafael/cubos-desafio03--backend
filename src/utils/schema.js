@@ -1578,4 +1578,4 @@ const up = async (num = null) => {
 
 up();
 
-// drop('users');
+// drop('jogos');

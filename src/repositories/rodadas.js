@@ -1,6 +1,9 @@
 /* eslint-disable camelcase */
 const db = require('../utils/database');
-
+/**
+ * Função responsável por obter os jogos de uma rodada específica
+ * direto do banco de dados
+ */
 const obterRodada = async (rodada) => {
 	const query = {
 		text: `SELECT * FROM jogos WHERE rodada = $1 ORDER BY id`,
@@ -10,6 +13,9 @@ const obterRodada = async (rodada) => {
 	return result.rows;
 };
 
+/**
+ * Função responsável por obter todos os jogos de todas as rodadas
+ */
 const obterRodadas = async () => {
 	const query = {
 		text: `SELECT * FROM jogos ORDER BY id`,
@@ -17,7 +23,9 @@ const obterRodadas = async () => {
 	const result = await db.query(query);
 	return result.rows;
 };
-
+/**
+ * Função responsável por obter uma partida através do seu ID
+ */
 const obterJogoPorId = async (idJogo) => {
 	const query = {
 		text: `SELECT * FROM jogos WHERE id = $1`,
@@ -26,7 +34,9 @@ const obterJogoPorId = async (idJogo) => {
 	const result = await db.query(query);
 	return result.rows.shift();
 };
-
+/**
+ * Função responsável por realizar updates em um jogo específico
+ */
 const atualizarJogo = async (id, jogoAtualizado) => {
 	const { gols_casa, gols_visitante } = jogoAtualizado;
 	const query = {
