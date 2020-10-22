@@ -14,6 +14,7 @@ const formataTabela = (nome, golsFeitos, golsSofridos, pontos) => {
 
 	if (flag === -1) {
 		tabelaFormatada.push({
+			id: tabelaFormatada.length + 1,
 			nome,
 			pontos,
 			vitorias: pontos === 3 ? 1 : 0,

@@ -19,7 +19,7 @@ const obterRodada = async (ctx) => {
 	const jogos = await rodadasRepo.obterRodada(rodada);
 
 	if (!jogos) {
-		return response(ctx, 'Jogos da rodada não encontrados', 404);
+		return response(ctx, 'Jogos da rodada não encontrados', 404, 'Erro');
 	}
 	return response(ctx, jogos, 200);
 };
@@ -57,7 +57,9 @@ const atualizarJogo = async (ctx) => {
 		);
 	}
 	if (id) {
+		console.log('Entrou antes');
 		const jogoAtual = await rodadasRepo.obterJogoPorId(id);
+		console.log('entrou depois');
 		if (jogoAtual) {
 			const jogoAtualizado = {
 				...jogoAtual,
