@@ -5,7 +5,7 @@ Introdução
 ---
 <p align="center">Este projeto consistiu no desenvolvimento de uma API RESTful para servir uma aplicação desenvolvida em React. A API consiste no fornecimento de dados da 
 tabela de jogos do Brasileirão de 2019 e da classificação final dos times. A API permite visualização de cada rodada do campeonato, e visualização simultânea da
-tabela de classificação de jogos. Além disso, desenvolveu-se um sitema de Login e Autenticação de usuário que, se feito corretamente, permite a edição dos jogos de todas as rodadas. A aplicação desenvolvida em ReactJS pode ser ser encontrada <a href="https://github.com/alsantosrafael/cubos-desafio03--frontend">aqui</a><p>
+tabela de classificação de jogos. Além disso, desenvolveu-se um sitema de Login e Autenticação de usuário que, se feito corretamente, permite a edição dos jogos de todas as rodadas. A aplicação desenvolvida em ReactJS pode ser ser encontrada <a href="https://github.com/alsantosrafael/cubos-desafio03--frontend">aqui</a>.<p>
 
 Tabela de Conteúdos
 ---
