@@ -57,9 +57,8 @@ const atualizarJogo = async (ctx) => {
 		);
 	}
 	if (id) {
-		console.log('Entrou antes');
 		const jogoAtual = await rodadasRepo.obterJogoPorId(id);
-		console.log('entrou depois');
+
 		if (jogoAtual) {
 			const jogoAtualizado = {
 				...jogoAtual,
