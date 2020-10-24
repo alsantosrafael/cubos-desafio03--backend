@@ -30,7 +30,7 @@ Instruções de uso
 ---
 1. Clone o repositorio de link https://github.com/alsantosrafael/cubos-desafio03--backend
 2. Abra a pasta do repositório clonado no VSCode.
-3. Execute o comando 'npm install' para instalar todas as depéndências que o projeto necessita.
+3. Execute o comando ```npm install``` para instalar todas as depéndências que o projeto necessita.
 4. Antes de executar a aplicação, execute o comando 'node ./src/utils/schema' para que a função "up()" seja executada. Essa função é responsável por criar as tabelas usadas na API.
 5. Utilize o arquivo '.env-exemplo' para configurar o sistema a um servidor e hospedar seu banco de dados.
 6. Por fim, execute node/nodemon index.js.
