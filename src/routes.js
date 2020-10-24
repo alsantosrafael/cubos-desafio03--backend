@@ -13,6 +13,6 @@ router.post('/auth', Autenticar);
 router.get('/classificacao', Rodadas.obterTabelaOrdenada);
 router.get('/jogos/:rodada', Rodadas.obterRodada);
 router.get('/jogos', Rodadas.obterRodadas);
-router.post('/jogos', Sessao.verify, Rodadas.atualizarJogo);
+router.put('/jogos', Sessao.verify, Rodadas.atualizarJogo);
 
 module.exports = router;

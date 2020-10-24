@@ -8,7 +8,7 @@ const response = require('../utils/response');
  */
 const obterRodada = async (ctx) => {
 	const { rodada = null } = ctx.params;
-	if (!rodada || rodada >= 39) {
+	if (!rodada || rodada >= 39 || rodada < 1) {
 		return response(
 			ctx,
 			'Mal formatado',
