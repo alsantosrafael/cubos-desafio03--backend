@@ -13,7 +13,7 @@ tabela de classificação de jogos. Além disso, desenvolveu-se um sitema de Log
 
 Tabela de Conteúdos
 ---
-<p align="center>
+<p align="center">
  <a href="#uso">Instruções de uso</a> •
  <a href="#tecnologias">Tecnologias</a> •
  <a href="#overview">Overview</a> •
