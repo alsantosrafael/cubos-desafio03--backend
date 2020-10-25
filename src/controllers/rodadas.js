@@ -74,9 +74,77 @@ const atualizarJogo = async (ctx) => {
 	return response(ctx, 'Pedido mal-formatado', 400, 'Insira um ID');
 };
 
+const adicionarJogo = async (ctx) => {
+	const {
+		time_casa,
+		time_visitante,
+		gols_casa,
+		gols_visitante,
+		idRodada = null,
+	} = ctx.request.body;
+
+	if (
+		!idRodada ||
+		!time_casa ||
+		!time_visitante ||
+		!gols_casa ||
+		!gols_visitante
+	) {
+		const todosJogos = await rodadasRepo.obterRodadas();
+		const ultimoId = await todosJogos[todosJogos.length - 1].id;
+		const jogosRodada = await rodadasRepo.obterRodada(idRodada);
+		if (jogosRodada) {
+			const result = rodadasRepo.adicionarJogo({
+				id: ultimoId + 1,
+				time_casa,
+				time_visitante,
+				gols_casa,
+				gols_visitante,
+				rodada: idRodada,
+			});
+			return response(ctx, result, 201, 'Jogo adicionado com sucesso!');
+		}
+		return response(ctx, 'Pedido mal formatado', 400, 'Rodada não existe');
+	}
+	return response(
+		ctx,
+		'Pedido mal formatado',
+		400,
+		'Insira todos os dados necessários'
+	);
+};
+
+const deletarJogo = async (ctx) => {
+	const { idJogo = null } = ctx.request.body;
+	if (idJogo) {
+		const existeJogo = await rodadasRepo.obterJogoPorId(idJogo);
+		if (!existeJogo) {
+			return response(
+				ctx,
+				'Pedido não encontrado!',
+				404,
+				'O id inserido não possui nenhum jogo cadastrado!'
+			);
+		}
+		const jogoDeletado = await rodadasRepo.deletarJogo(Number(idJogo));
+		if (!jogoDeletado) {
+			return response(
+				ctx,
+				'Pedido não encontrado!',
+				404,
+				'O id inserido não possui nenhum jogo cadastrado!'
+			);
+		}
+		return response(ctx, existeJogo, 200, 'Jogo foi deletado com sucesso!');
+	}
+	return response(ctx, 'Pedido mal formatado', 400, 'Insira um id válido');
+};
+
 module.exports = {
 	obterRodada,
 	obterTabelaOrdenada,
 	atualizarJogo,
 	obterRodadas,
+	adicionarJogo,
+	deletarJogo,
 };
