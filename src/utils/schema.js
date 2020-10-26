@@ -1576,6 +1576,6 @@ const up = async (num = null) => {
 	console.log('Migração executada!');
 };
 
- up();
+  up();
 
-// drop('jogos');
+//  drop('jogos');

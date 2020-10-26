@@ -80,27 +80,21 @@ const adicionarJogo = async (ctx) => {
 		time_visitante,
 		gols_casa,
 		gols_visitante,
-		idRodada = null,
+		rodada,
 	} = ctx.request.body;
 
-	if (
-		!idRodada ||
-		!time_casa ||
-		!time_visitante ||
-		!gols_casa ||
-		!gols_visitante
-	) {
+	if (time_casa && time_visitante && gols_casa && gols_visitante && rodada) {
 		const todosJogos = await rodadasRepo.obterRodadas();
 		const ultimoId = await todosJogos[todosJogos.length - 1].id;
-		const jogosRodada = await rodadasRepo.obterRodada(idRodada);
+		const jogosRodada = await rodadasRepo.obterRodada(rodada);
 		if (jogosRodada) {
-			const result = rodadasRepo.adicionarJogo({
+			const result = await rodadasRepo.adicionarJogo({
 				id: ultimoId + 1,
 				time_casa,
 				time_visitante,
 				gols_casa,
 				gols_visitante,
-				rodada: idRodada,
+				rodada,
 			});
 			return response(ctx, result, 201, 'Jogo adicionado com sucesso!');
 		}

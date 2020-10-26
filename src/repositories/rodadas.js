@@ -59,12 +59,11 @@ const adicionarJogo = async (novoJogo) => {
 		gols_visitante,
 		rodada,
 	} = novoJogo;
-	// const jogos = await obterRodadas();
-	// const ultimoIdJogo = await jogos[jogos.length - 1].id;
+
 	const query = {
 		text: `INSERT INTO jogos
 		(id, time_casa, time_visitante, gols_casa, gols_visitante, rodada)
-		VALUES ($1, $2, $3, $4, $5 $6) RETURNING *`,
+		VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
 		values: [
 			Number(id),
 			time_casa,
